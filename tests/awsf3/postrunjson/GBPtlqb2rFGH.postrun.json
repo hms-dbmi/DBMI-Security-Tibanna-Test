@@ -1,0 +1,200 @@
+{
+    "Job": {
+        "App": {
+            "App_name": "workflow_dbSNP_ID_fixer-check",
+            "App_version": "v21",
+            "cwl_url": "https://raw.githubusercontent.com/dbmi-bgm/cgap-pipeline/v21/cwl",
+            "language": "cwl_v1",
+            "main_cwl": "workflow_parallel_dbSNP_ID_fixer_plus_vcf-integrity-check.cwl",
+            "other_cwl_files": "parallel_dbSNP_ID_fixer.cwl,vcf-integrity-check.cwl"
+        },
+        "Input": {
+            "Env": {},
+            "Input_files_data": {
+                "dbSNP_ref_vcf": {
+                    "class": "File",
+                    "dir": "elasticbeanstalk-fourfront-cgapwolf-files",
+                    "mount": true,
+                    "path": "aa542c8e-b31c-4cff-b2d4-aa4037bb913c/GAPFIF4JKLTH.vcf.gz",
+                    "profile": "",
+                    "rename": "",
+                    "unzip": ""
+                },
+                "input_vcf": {
+                    "class": "File",
+                    "dir": "elasticbeanstalk-fourfront-cgapwolf-wfoutput",
+                    "mount": true,
+                    "path": "6b82a145-3dba-452e-9648-1bb81b0d7b1d/GAPFIF3KTGCP.vcf.gz",
+                    "profile": "",
+                    "rename": "",
+                    "unzip": ""
+                },
+                "region_file": {
+                    "class": "File",
+                    "dir": "elasticbeanstalk-fourfront-cgapwolf-files",
+                    "mount": true,
+                    "path": "1c07a3aa-e2a3-498c-b838-15991c4a2f28/GAPFIBGEOI72.txt",
+                    "profile": "",
+                    "rename": "",
+                    "unzip": ""
+                }
+            },
+            "Input_parameters": {},
+            "Secondary_files_data": {
+                "dbSNP_ref_vcf": {
+                    "class": "File",
+                    "dir": "elasticbeanstalk-fourfront-cgapwolf-files",
+                    "mount": true,
+                    "path": "aa542c8e-b31c-4cff-b2d4-aa4037bb913c/GAPFIF4JKLTH.vcf.gz.tbi",
+                    "profile": "",
+                    "rename": "",
+                    "unzip": ""
+                },
+                "input_vcf": {
+                    "class": "File",
+                    "dir": "elasticbeanstalk-fourfront-cgapwolf-wfoutput",
+                    "mount": true,
+                    "path": "6b82a145-3dba-452e-9648-1bb81b0d7b1d/GAPFIF3KTGCP.vcf.gz.tbi",
+                    "profile": "",
+                    "rename": "",
+                    "unzip": ""
+                }
+            }
+        },
+        "JOBID": "GBPtlqb2rFGH",
+        "Log": {
+            "log_bucket_directory": "tibanna-output"
+        },
+        "Output": {
+            "Output files": {
+                "vcf": {
+                    "basename": "fixed_GAPFIF3KTGCP.vcf.gz",
+                    "checksum": "sha1$c2a428e01f90887b335b215300ea00828f4a73a1",
+                    "class": "File",
+                    "location": "file:///mnt/data1/out/fixed_GAPFIF3KTGCP.vcf.gz",
+                    "md5sum": "80e0c0fad26272a96ef95e9362ff7419",
+                    "path": "/mnt/data1/out/fixed_GAPFIF3KTGCP.vcf.gz",
+                    "secondaryFiles": [
+                        {
+                            "basename": "fixed_GAPFIF3KTGCP.vcf.gz.tbi",
+                            "checksum": "sha1$920e56345b7e31ab44413d9c792b6b6324e7cdea",
+                            "class": "File",
+                            "location": "file:///mnt/data1/out/fixed_GAPFIF3KTGCP.vcf.gz.tbi",
+                            "md5sum": "56c95ec070f143c565744527150e6101",
+                            "path": "/mnt/data1/out/fixed_GAPFIF3KTGCP.vcf.gz.tbi",
+                            "size": 2187181
+                        }
+                    ],
+                    "size": 1723376222
+                },
+                "vcf-check": {
+                    "basename": "integrity_check",
+                    "checksum": "sha1$8296f8ccff8a4fad99be5d3d71175134d84e2621",
+                    "class": "File",
+                    "location": "file:///mnt/data1/out/integrity_check",
+                    "md5sum": "475bff046ae43cc36f4edb68f5a35350",
+                    "path": "/mnt/data1/out/integrity_check",
+                    "size": 14
+                }
+            },
+            "alt_cond_output_argnames": {},
+            "output_bucket_directory": "elasticbeanstalk-fourfront-cgapwolf-wfoutput",
+            "output_target": {
+                "vcf": "2a6b9f05-2287-4cb2-be82-3bf6eff5f7be/GAPFIE8ISBQK.vcf.gz",
+                "vcf-check": "f18573ed-7aee-49d8-94c0-5d8ffef1b313/vcf-check553202857276"
+            },
+            "secondary_output_target": {
+                "vcf": [
+                    "2a6b9f05-2287-4cb2-be82-3bf6eff5f7be/GAPFIE8ISBQK.vcf.gz.tbi"
+                ]
+            }
+        },
+        "filesystem": "",
+        "instance_availablity_zone": "",
+        "instance_id": "",
+        "instance_type": "",
+        "start_time": "20210312-14:04:23-UTC"
+    },
+    "config": {
+        "EBS_optimized": true,
+        "ami_id": "ami-0a7ddfc7e412ab6e0",
+        "ami_per_region": {
+            "Arm": {
+                "af-south-1": "ami-0d6a4af087f83899d",
+                "ap-east-1": "ami-0d375f2ce688d16b9",
+                "ap-northeast-1": "ami-07227003bfa0565e3",
+                "ap-northeast-2": "ami-0ee2af459355dd917",
+                "ap-south-1": "ami-01af9ec07fed38a38",
+                "ap-southeast-1": "ami-0d74dc5af4bf74ea8",
+                "ap-southeast-2": "ami-08ab7201c83209fe8",
+                "ca-central-1": "ami-0cbf87c80362a058e",
+                "eu-central-1": "ami-09cfa59f75e88ad54",
+                "eu-north-1": "ami-04ba962c974ddd374",
+                "eu-south-1": "ami-0b1db84f31597a70f",
+                "eu-west-1": "ami-0804bdeafd8af01f8",
+                "eu-west-2": "ami-0db05a333dc02c1c8",
+                "eu-west-3": "ami-0ceab436f882fe36a",
+                "me-south-1": "ami-0211bc858eb163594",
+                "sa-east-1": "ami-0fc9a9dec0f3df318",
+                "us-east-1": "ami-0f3e90ad8e76c7a32",
+                "us-east-2": "ami-03359d89f311a015e",
+                "us-west-1": "ami-00ffd20b39dbfb6ea",
+                "us-west-2": "ami-08ab3015c1bc36d24"
+            },
+            "x86": {
+                "af-south-1": "ami-080baa4ec59c456aa",
+                "ap-east-1": "ami-0a9056eb817bc3928",
+                "ap-northeast-1": "ami-0f4c520515c41ff46",
+                "ap-northeast-2": "ami-0d8618a76aece8a8e",
+                "ap-south-1": "ami-05ef59bc4f359c93b",
+                "ap-southeast-1": "ami-0c22dc3b05714bda1",
+                "ap-southeast-2": "ami-03dc109bbf412aac5",
+                "ca-central-1": "ami-01af127710fadfe74",
+                "eu-central-1": "ami-0887bcb1c901c1769",
+                "eu-north-1": "ami-00a6f0f9fee951aa0",
+                "eu-south-1": "ami-0a72279e56849415e",
+                "eu-west-1": "ami-08db59692e4371ea6",
+                "eu-west-2": "ami-036d3ce7a21e07012",
+                "eu-west-3": "ami-0cad0ec4160a6b940",
+                "me-south-1": "ami-03479b7a590f97945",
+                "sa-east-1": "ami-0b2164f9680f97099",
+                "us-east-1": "ami-06e2266f85063aabc",
+                "us-east-2": "ami-03a4e3e84b6a1813d",
+                "us-west-1": "ami-0c5e8147be760a354",
+                "us-west-2": "ami-068589fed9c8d5950"
+            }
+        },
+        "availability_zone": "",
+        "awsf_image": "4dndcic/tibanna-awsf:1.0.5",
+        "behavior_on_capacity_limit": "wait_and_retry",
+        "cloudwatch_dashboard": false,
+        "cpu": "",
+        "ebs_iops": "",
+        "ebs_size": 45,
+        "ebs_size_as_is": false,
+        "ebs_throughput": "",
+        "ebs_type": "gp3",
+        "email": false,
+        "encrypt_s3_upload": false,
+        "instance_type": "c5n.4xlarge",
+        "job_tag": "workflow_dbSNP_ID_fixer-check",
+        "json_bucket": "tibanna-output",
+        "key_name": "",
+        "language": "cwl_v1",
+        "log_bucket": "tibanna-output",
+        "mem": 0,
+        "mem_as_is": false,
+        "overwrite_input_extra": false,
+        "password": "",
+        "public_postrun_json": false,
+        "root_ebs_size": 8,
+        "run_name": "run_workflow_dbSNP_ID_fixer-check-bcc2009d-f1b0-4629-824c-ae7d0565e256",
+        "script_url": "https://raw.githubusercontent.com/4dn-dcic/tibanna/master/awsf3/",
+        "security_group": "",
+        "shutdown_min": "now",
+        "spot_duration": "",
+        "spot_instance": true,
+        "subnet": "",
+        "use_benchmark": false
+    }
+}
