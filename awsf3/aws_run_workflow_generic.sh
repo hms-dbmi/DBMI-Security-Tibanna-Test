@@ -52,7 +52,7 @@ export LOGFILE1=templog___  # log before mounting ebs
 export LOGFILE2=$LOCAL_OUTDIR/$JOBID.log
 export STATUS=0
 export ERRFILE=$LOCAL_OUTDIR/$JOBID.error  # if this is found on s3, that means something went wrong.
-export INSTANCE_REGION=$(ec2metadata --availability-zone | sed 's/[a-z]$//')
+export INSTANCE_REGION=$(python3 -c "from ec2_metadata import ec2_metadata; print(ec2_metadata.availability_zone[:-1])")
 export AWS_ACCOUNT_ID=$(aws sts get-caller-identity| grep Account | sed 's/[^0-9]//g')
 
 
@@ -131,14 +131,14 @@ send_job_started;
 ### env
 exl echo "## Tibanna version: $TIBANNA_VERSION"
 exl echo "## job id: $JOBID"
-exl echo "## instance type: $(ec2metadata --instance-type)"
-exl echo "## instance id: $(ec2metadata --instance-id)"
+exl echo "## instance type: $(python3 -c "from ec2_metadata import ec2_metadata; print(ec2_metadata.instance_type)")"
+exl echo "## instance id: $(python3 -c "from ec2_metadata import ec2_metadata; print(ec2_metadata.instance_id)")"
 exl echo "## instance region: $INSTANCE_REGION"
 exl echo "## tibanna lambda version: $TIBANNA_VERSION"
 exl echo "## awsf image: $AWSF_IMAGE"
-exl echo "## ami id: $(ec2metadata --ami-id)"
-exl echo "## availability zone: $(ec2metadata --availability-zone)"
-exl echo "## security groups: $(ec2metadata --security-groups)"
+exl echo "## ami id: $(python3 -c "from ec2_metadata import ec2_metadata; print(ec2_metadata.ami_id)")"
+exl echo "## availability zone: $(python3 -c "from ec2_metadata import ec2_metadata; print(ec2_metadata.availability_zone)")"
+exl echo "## security groups: $(python3 -c "from ec2_metadata import ec2_metadata; print(','.join(ec2_metadata.security_groups))")"
 exl echo "## log bucket: $LOGBUCKET"
 exl echo "## shutdown min: $SHUTDOWN_MIN"
 exl echo "## kms_key_id: $S3_ENCRYPT_KEY_ID"
@@ -207,7 +207,10 @@ fi
 # Works only in deployed Tibanna version >=1.6.0 since the ec2 needed more permissions to call `aws ec2 describe-spot-instance-requests`
 # Since cron only has a resolution of 1 min, we set up 2 jobs and let one sleep for 30s, to get a resolution of 30s.
 if [ $(version $TIBANNA_VERSION) -ge $(version "1.6.0") ]; then
-  is_spot_instance=`aws ec2 describe-spot-instance-requests --filters Name=instance-id,Values="$(ec2metadata --instance-id)" --region "$INSTANCE_REGION" | python3 -c "import sys, json; print(len(json.load(sys.stdin)['SpotInstanceRequests']))"`
+  is_spot_instance=$(aws ec2 describe-spot-instance-requests \
+    --filters Name=instance-id,Values="$(python3 -c "from ec2_metadata import ec2_metadata; print(ec2_metadata.instance_id)")" \
+    --region "$INSTANCE_REGION" \
+    | python3 -c "import sys, json; print(len(json.load(sys.stdin).get('SpotInstanceRequests', [])))")
   if [ "$is_spot_instance" = "1" ]; then
     exl echo
     exl echo "## Turning on Spot instance failure detection"

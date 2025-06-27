@@ -11,8 +11,7 @@ from tibanna.ec2_utils import (
     Config,
     Execution,
     upload_workflow_to_s3,
-    get_file_size,
-    get_ec2metadata
+    get_file_size
 )
 from tibanna.pricing_utils import (
     get_cost_estimate

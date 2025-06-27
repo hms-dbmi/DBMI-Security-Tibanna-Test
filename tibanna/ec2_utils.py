@@ -12,7 +12,6 @@ import random
 import string
 from . import create_logger
 from datetime import datetime, timedelta
-from ec2_metadata import ec2_metadata
 from .utils import (
     does_key_exist,
     create_jobid
