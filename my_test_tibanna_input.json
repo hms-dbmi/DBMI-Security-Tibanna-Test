@@ -18,6 +18,7 @@
     "instance_type": "t3.micro",
     "EBS_optimized": true,
     "password": "whateverpasswordworks",
-    "log_bucket": "kelly-tibanna-test"
+    "log_bucket": "kelly-tibanna-test",
+    "awsf_image": "417090103303.dkr.ecr.us-east-1.amazonaws.com/tibanna-awsf:5.4.3"
   }
 }

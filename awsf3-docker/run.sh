@@ -51,6 +51,10 @@ export INSTANCE_ID=$(python3 -c "from ec2_metadata import ec2_metadata; print(ec
 export INSTANCE_AVAILABILITY_ZONE=$(python3 -c "from ec2_metadata import ec2_metadata; print(ec2_metadata.availability_zone)")
 export INSTANCE_REGION=$(python3 -c "from ec2_metadata import ec2_metadata; print(ec2_metadata.availability_zone[:-1])")
 export INSTANCE_TYPE=$(python3 -c "from ec2_metadata import ec2_metadata; print(ec2_metadata.instance_type)")
+echo "INSTANCE_ID: $INSTANCE_ID"
+echo "AZ: $INSTANCE_AVAILABILITY_ZONE"
+echo "Region: $INSTANCE_REGION"
+echo "Instance Type: $INSTANCE_TYPE"
 
 
 export AWS_ACCOUNT_ID=$(aws sts get-caller-identity| grep Account | sed 's/[^0-9]//g')
